@@ -10,7 +10,7 @@ int main()
 	// Windows 调试该程序时，开启可以防止乱码
 	system("chcp 65001");
 	string htmlStr;
-	auto f = fstream("F:/Project/HTMLReader/tests/HTML/a.html");
+	auto f = fstream("F:/TestData/a.html");
 	stringstream ss;
 	if (f)
 	{

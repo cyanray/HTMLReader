@@ -15,4 +15,7 @@ macro(api_exe target)
     target_link_libraries(${PROJECT_NAME}-${target} HTMLReader)
 endmacro()
 
-api_exe(main)
+api_exe(GetTitle)
+api_exe(GetAttributes)
+api_exe(SearchByTagName)
+api_exe(SearchByAttribute)

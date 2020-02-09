@@ -407,8 +407,7 @@ namespace Cyan
 		{
 			++(*MLP.use_count);
 			use_count = MLP.use_count;
-			root = MLP.root;
-			now = MLP.now;
+			now = root = MLP.now;
 			raw = MLP.raw;
 		}
 		HTMLDoc& operator=(const HTMLDoc& MLP)
