@@ -266,6 +266,7 @@ namespace Cyan
 		{
 			attr[name] = value;
 		}
+	public:
 		bool Exist(const string& name) const
 		{
 			return (attr.find(name) != attr.end());
@@ -402,6 +403,7 @@ namespace Cyan
 	class HTMLDoc
 	{
 	public:
+		typedef function<bool(const std::string & tagName, const Attributes & attributs)> SearchCondition;
 		HTMLDoc() :raw(), root(nullptr), now(nullptr), use_count(new int(1)) {}
 		HTMLDoc(const HTMLDoc& MLP)
 		{
@@ -623,6 +625,18 @@ namespace Cyan
 			//string t =  substr(raw + now->txtOffset, now->count);
 			this->Root();
 			return t;
+		}
+		vector<HTMLDoc> Search(const SearchCondition& SC)
+		{
+			vector<HTMLDoc> res;
+			vector<Node*> nodes = now->Find_If([&](const Node* n) { return SC(n->tagName, n->attributes); });
+			for (Node* n : nodes)
+			{
+				HTMLDoc tHR(*this);
+				tHR.SetRoot(n);
+				res.push_back(std::move(tHR));
+			}
+			return res;
 		}
 		vector<HTMLDoc> SearchByTagName(const string& name)
 		{

@@ -38,13 +38,18 @@ int main()
 
 	//ml.PrintTree(cout, true);
 
-	auto res = hdoc.SearchByAttribute("class", "ds-1col node node-article view-mode-realtime_listing  clearfix");
+	auto res = hdoc.Search(
+		[](const string& tagName, const Attributes& attrs)
+		{
+			return (tagName == "span" && attrs.Exist("class", "post-title"));
+		});
+
+	//auto res = hdoc.SearchByAttribute("class", "ds-1col node node-article view-mode-realtime_listing  clearfix");
 	int i = 1;
 	for (auto& m : res)
 	{
 		cout << i++<<":\t";
-		cout << m["a"]["em"].GetInner() << "\t";
-		cout << m["a"]["span"].GetInner() << "\t";
+		cout << m.GetInner();
 		cout << endl;
 	}
 
