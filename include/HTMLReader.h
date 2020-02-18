@@ -556,7 +556,7 @@ namespace Cyan
 		}
 		HTMLDoc& operator[](const string& tagName)
 		{
-			if (tagName == "") { this->Root(); return *this; }
+			if (tagName == "") { return *this; }
 			if (now->child != nullptr)
 			{
 				if (now->child->tagName == tagName)
@@ -579,7 +579,7 @@ namespace Cyan
 		}
 		HTMLDoc& operator[](unsigned int n)
 		{
-			if (n == 0) { this->Root();  return *this; }
+			if (n == 0) { return *this; }
 			unsigned short i = 0;
 			Node* tNode = now->siblings;
 			while (tNode != nullptr)
