@@ -653,7 +653,7 @@ namespace Cyan
 		vector<HTMLDoc> SearchByAttribute(const string& AttributeName)
 		{
 			vector<HTMLDoc> res;
-			auto& filter = [&](const Node* n)
+			auto filter = [&](const Node* n)
 			{
 				return n->attributes.Exist(AttributeName);
 			};
@@ -669,7 +669,7 @@ namespace Cyan
 		vector<HTMLDoc> SearchByAttribute(const string& AttributeName, const string& AttributeValue)
 		{
 			vector<HTMLDoc> res;
-			auto& filter = [&](const Node* n)
+			auto filter = [&](const Node* n)
 			{
 				return n->attributes.Exist(AttributeName, AttributeValue);
 			};
@@ -701,8 +701,8 @@ namespace Cyan
 				cout << '<' << node->tagName;
 				if (printAttribute)
 				{
-					auto& it = node->attributes.attr.cbegin();
-					auto& eit = node->attributes.attr.cend();
+					auto it = node->attributes.attr.begin();
+					auto eit = node->attributes.attr.end();
 					for (; it != eit; ++it)
 					{
 						cout << ' ' << it->first << "=\"" << it->second << '"';
